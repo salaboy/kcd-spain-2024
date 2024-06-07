@@ -70,3 +70,9 @@ spec:
       http:
         port: 8080
 ```
+
+Let's apply this function to the cluster: 
+
+```
+kubectl apply -f functions/go/function.yaml
+```
