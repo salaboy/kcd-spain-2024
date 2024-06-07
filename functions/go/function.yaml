@@ -15,7 +15,7 @@ spec:
       # # Use FUNC_GOPROXY to set the goproxy if failed to fetch go modules
       # FUNC_GOPROXY: "https://goproxy.cn"
     srcRepo:
-      url: "https://github.com/salaboy/kdc-spain-2024.git"
+      url: "https://github.com/salaboy/kcd-spain-2024.git"
       sourceSubPath: "functions/go"
       revision: "main"
   serving:

@@ -58,7 +58,7 @@ spec:
       # # Use FUNC_GOPROXY to set the goproxy if failed to fetch go modules
       # FUNC_GOPROXY: "https://goproxy.cn"
     srcRepo:
-      url: "https://github.com/salaboy/kdc-spain-2024.git"
+      url: "https://github.com/salaboy/kcd-spain-2024.git"
       sourceSubPath: "functions/go"
       revision: "main"
   serving:
@@ -76,3 +76,40 @@ Let's apply this function to the cluster:
 ```
 kubectl apply -f functions/go/function.yaml
 ```
+
+Check the function state: 
+
+```
+kubectl get function
+```
+
+Send a request to the function: 
+
+```
+kubectl get function function-sample -o=jsonpath='{.status.addresses}'
+```
+
+But.. none of those addresses are accessible with further configurations :( 
+
+Because we know that Openfunction is using Knative Serving we can get the address:
+
+```
+kubectl get ksvc
+```
+
+This will show us the Knative Service created for the function: 
+
+```
+NAME                       URL                                                              LATESTCREATED                   LATESTREADY                     READY   REASON
+serving-4skvc-ksvc-k5gzk   http://serving-4skvc-ksvc-k5gzk.default.34.91.134.132.sslip.io   serving-4skvc-ksvc-k5gzk-v200   serving-4skvc-ksvc-k5gzk-v200   True    
+
+```
+
+Then we can curl the function to the public address: 
+
+```
+curl  http://serving-4skvc-ksvc-k5gzk.default.34.91.134.132.sslip.io/KCDSpain
+```
+
+## Challenges
+
