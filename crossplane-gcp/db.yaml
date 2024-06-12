@@ -1,0 +1,28 @@
+apiVersion: sql.gcp.upbound.io/v1beta1
+kind: DatabaseInstance
+metadata:
+  generateName: crossplane-db-
+  labels:
+    docs.crossplane.io/example: provider-gcp
+spec:
+  forProvider:
+    databaseVersion: POSTGRES_15
+    region: us-east1
+    rootPasswordSecretRef:
+      namespace: default
+      key: password
+      name: db-password
+    settings:
+    - availabilityType: REGIONAL
+      tier: db-custom-1-3840
+      backupConfiguration:
+      - enabled: true
+        binaryLogEnabled: false
+      ipConfiguration:
+      - ipv4Enabled: true
+        authorizedNetworks:
+        - name: all
+          value: 0.0.0.0/0
+    deletionProtection: false
+  providerConfigRef:
+    name: default
