@@ -91,7 +91,7 @@ kubectl get function function-sample -o=jsonpath='{.status.addresses}'
 
 But.. none of those addresses are accessible with further configurations :( 
 
-Because we know that Openfunction is using Knative Serving we can get the address:
+Because we know that Openfunction is using Knative Serving, we can get the address:
 
 ```
 kubectl get ksvc
@@ -112,4 +112,27 @@ curl  http://serving-4skvc-ksvc-k5gzk.default.34.91.134.132.sslip.io/KCDSpain
 ```
 
 ## Challenges
+
+- Complex to debug, complex to troubleshoot when things go wrong
+- Are these tools the right tools for you?
+- Are the interfaces/abstractions exposed the right one for your teams? (Functions)
+- What about using GitHub Actions or GitOps?
+
+## Understanding some of the projects you will need
+
+- [Knative](https://knative.dev)
+- [Dapr](https://dapr.io)
+- [Crossplane](https://crossplane.io)
+
+Check this [blog about how Crossplane and Dapr work together](https://blog.crossplane.io/crossplane-and-dapr/).
+
+## Don't build your platforms alone
+
+Check some of the vendors' offerings: 
+- Openshift / Tanzu: 
+- Upbound: managed control planes
+- Diagrid: managed APIs for developers
+
+
+  
 
